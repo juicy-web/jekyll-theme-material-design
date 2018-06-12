@@ -1,22 +1,69 @@
+{% if site.theme.colors.navbar %}
+{% assign navbar_color = site.theme.colors.navbar %}
+{% else %}
+{% assign navbar_color = 'blue' %}
+{% endif %}
+{% if site.theme.colors.footer %}
+{% assign footer_color = site.theme.colors.footer %}
+{% else %}
+{% assign footer_color = 'orange' %}
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
   {% seo %}
-  <link rel="stylesheet" href="{{ '/assets/css/material.css' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}" type="text/css">
+  <link rel="stylesheet" href="{{ '/assets/materialize/css/materialize.min.css' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}" type="text/css">
   {% if site.head_content %}{{ site.head_content }}{% endif %}
 </head>
 <body class="mdc-typography">
+
+  <header>
+    <nav class="{{ navbar_color }} lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">{% if site.title %}{{ site.title }}{% else %}Material{% endif %}</a>
+      <ul class="right hide-on-med-and-down">
+        {% if site.navigation %}
+        {% for item in site.navigation %}
+        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        {% if site.navigation %}
+        {% for item in site.navigation %}
+        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  </header>
 
   <main>
     {{ content }}
   </main>
 
-  <footer>
-    {% if site.footer_content %}{{ site.footer_content }}{% endif %}
+  <footer class="page-footer {{ footer_color }}">
+    {% if site.footer_content %}
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">{% if site.title %}{{ site.title }}{% else %}Material{% endif %}</h5>
+          <p class="grey-text text-lighten-4">{{ site.footer_content }}</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class="footer-copyright">
+      <div class="container">
+      <b>Copyright &copy; 2018 by <i>{% if site.author %}{{ site.author }}{% else %}Untitled{% endif %}</i>.</b> All rights reserved. | Design: <a class="{{ footer_color }}-text text-lighten-3" href="https://materialize.io" target="_blank">Materialize</a> | Jekyll Adaption: <a class="{{ footer_color }}-text text-lighten-3" href="https://juicy-web.github.io">Juicy Web</a>
+      </div>
+    </div>
   </footer>
 
-  <script src="{{ '/assets/js/material.js' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}"></script>
+  <script src="{{ '/assets/materialize/js/materialize.min.js' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}"></script>
 </body>
 </html>
