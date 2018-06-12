@@ -6,7 +6,7 @@
   {% seo %}
   <title>{{ page.title }} / {{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/material-components-web.min.css' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}" type="text/css">
-  {{ site.head_content }}
+  {% if site.head_content %}{{ site.head_content }}{% endif %}
 </head>
 <body>
 
@@ -15,7 +15,7 @@
   </main>
 
   <footer>
-    {{ site.footer_content }}
+    {% if site.footer_content %}{{ site.footer_content }}{% endif %}
   </footer>
 
   <script src="{{ '/assets/js/material-components-web.min.js' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}"></script>
