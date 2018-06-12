@@ -4,11 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
   {% seo %}
-  <title>{{ page.title }} / {{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/material.css' | relative_url }}{% if site.github.build_revision %}?v={{ site.github.build_revision }}{% endif %}" type="text/css">
   {% if site.head_content %}{{ site.head_content }}{% endif %}
 </head>
-<body>
+<body class="mdc-typography">
 
   <main>
     {{ content }}
